@@ -2,7 +2,7 @@
     <div class="home">
         <div class="header">
             <p class="title">
-                ТОП события
+
             </p>
             <router-link to="/profile" class="profile" href="">
                 <img src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=1&w=500" alt="">

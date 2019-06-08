@@ -3,7 +3,7 @@
     <div class="events" >
       <div class="event" v-for='item in events'>
           <div class='flex'>
-            <div class="tag">спорт</div>
+            <div class="tag">{{ item.category.name }}</div>
             <div class='bookmark'></div>
           </div>
           <h3> {{ item.name }} </h3>
@@ -11,11 +11,11 @@
             {{ new Date(item.created_at).toLocaleDateString('ru') }}
           </div>
           <div class="address">
-            {{ "ул. Ленина 63" }}
+            {{ item.address }}
           </div>
           <div class="flex price-container">
             <div class="price">
-              {{ "от 250 Р" }}
+              {{item.price ? (item.price | 0) + " Р" : 'Бесплатно' }}
             </div>
           </div>
 

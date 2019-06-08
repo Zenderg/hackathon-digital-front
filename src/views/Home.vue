@@ -1,18 +1,43 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <EventsList :events="events"></EventsList>
+    <Filter></Filter>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import EventsList from '@/components/EventsList.vue'
+import Filter from '@/components/Filter.vue'
+import axios from 'axios'
 
 export default {
   name: 'home',
+  data(){
+    return {
+      events: [
+        {
+          name: "Хакатон",
+          date: "25.06.2019",
+          address: "ул 20-летия Октября",
+          price: "от 250Р"
+        },
+        {name: 2},
+        {name: 3},
+        {name: 4},
+
+      ]
+    }
+  },
+  mounted(){
+    axios.get('http://penka.studio/api/events').then((r) => {
+      console.log(r);
+      this.events = r.data;
+    })
+  },
   components: {
-    HelloWorld
+    EventsList,
+    Filter
   }
 }
 </script>

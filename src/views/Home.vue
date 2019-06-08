@@ -9,9 +9,9 @@
             </router-link>
         </div>
         <div class="wrapper">
-            <Controls></Controls>
-            <EventsList :events="events"></EventsList>
-            <Filters></Filters>
+            <Controls @showFilter="toggleFilter"></Controls>
+            <Filters v-if='isFilterShow' :categories="categories"></Filters>
+            <EventsList  :events="events"></EventsList>
         </div>
     </div>
 </template>
@@ -27,24 +27,23 @@
         name: 'home',
         data() {
             return {
-                events: [
-                    {
-                        name: "Хакатон",
-                        date: "25.06.2019",
-                        address: "ул 20-летия Октября",
-                        price: "от 250Р"
-                    },
-                    {name: 2},
-                    {name: 3},
-                    {name: 4},
-
-                ]
+                events: [],
+                categories: [],
+                isFilterShow: false
             }
+        },
+        methods: {
+          toggleFilter(){
+            this.isFilterShow = !this.isFilterShow;
+          }
         },
         mounted() {
             axios.get('http://penka.studio/api/events').then((r) => {
                 console.log(r);
                 this.events = r.data;
+            });
+            axios.get('http://penka.studio/api/categories').then((r) => {
+              this.categories = r.data;
             })
         },
         components: {

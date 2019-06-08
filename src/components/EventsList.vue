@@ -1,26 +1,8 @@
 <template>
-    <div class="container">
-        <div class="events">
-            <router-link class="event" v-for='item in events' :key="item.id" :to="'/events/'+item.id" >
-                <div class='flex'>
-                    <div class="tag">{{ item.category.name }}</div>
-                    <div class='bookmark'></div>
-                </div>
-                <h3> {{ item.name }} </h3>
-                <div class="date">
-                    {{ new Date(item.created_at).toLocaleDateString('ru') }}
-                </div>
-                <div class="address">
-                    {{ "ул. Ленина 63" }}
-                </div>
-                <div class="flex price-container">
-                    <div class="price">
-                        {{ "от 250 Р" }}
-                    </div>
-                </div>
   <div class="container">
     <div class="events" >
-      <div class="event" v-for='item in events'>
+      <router-link class="event" v-for='item in events' :key="item.id" :to="'/events/'+item.id" >
+      <!-- <div class="event" v-for='item in events'> -->
           <div class='flex'>
             <div class="tag">{{ item.category.name }}</div>
             <div class='bookmark'></div>
@@ -38,7 +20,8 @@
             </div>
           </div>
 
-      </div>
+      <!-- </div> -->
+      </router-link>
     </div>
   </div>
 </template>
@@ -55,6 +38,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .event{
+  display: block;
   // width: 100%;
   margin: 20px 0 30px 0;
   text-align: left;

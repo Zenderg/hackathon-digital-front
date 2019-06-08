@@ -1,8 +1,18 @@
 <template>
     <div class="home">
-        <Controls></Controls>
-        <EventsList :events="events"></EventsList>
-        <Filter></Filter>
+        <div class="header">
+            <p class="title">
+                ТОП события
+            </p>
+            <router-link to="/profile" class="profile" href="">
+                <img src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=1&w=500" alt="">
+            </router-link>
+        </div>
+        <div class="wrapper">
+            <Controls></Controls>
+            <EventsList :events="events"></EventsList>
+            <Filter></Filter>
+        </div>
     </div>
 </template>
 
@@ -47,6 +57,31 @@
 
 <style lang="scss" scoped>
     .home {
-        padding: 20px 25px 0 25px;
+        .header {
+            width: 100%;
+            background: linear-gradient(75.3deg, #5E48E1 0%, #BCA3EF 100%);
+            padding: 31px 0 31px 28px;
+            display: flex;
+            align-items: center;
+
+            .title {
+                color: #ffffff;
+                margin: 0;
+            }
+
+            .profile{
+                margin-left: auto;
+                margin-right: 26px;
+                img{
+                    height: 34px;
+                    width: 34px;
+                    object-fit: cover;
+                    border-radius: 50%;
+                }
+            }
+        }
+        .wrapper{
+            padding: 20px 25px 0 25px;
+        }
     }
 </style>

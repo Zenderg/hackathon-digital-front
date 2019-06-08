@@ -39,7 +39,7 @@
         },
         mounted() {
             axios.get('http://penka.studio/api/events').then((r) => {
-                console.log(r);
+                // console.log(r);
                 this.events = r.data;
             });
             axios.get('http://penka.studio/api/categories').then((r) => {

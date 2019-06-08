@@ -58,7 +58,7 @@
     .home {
         .header {
             width: 100%;
-            background: linear-gradient(75.3deg, #5E48E1 0%, #BCA3EF 100%);
+            background: linear-gradient(75.3deg, #BB63FF 0%, #8B5AF0 100%);
             padding: 31px 0 31px 28px;
             display: flex;
             align-items: center;

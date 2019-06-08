@@ -37,8 +37,7 @@ export default {
 <style scoped lang="scss">
 .event{
   // width: 100%;
-  margin: 20px;
-  margin-bottom: 30px;
+  margin: 20px 0 30px 0;
   text-align: left;
   background: linear-gradient(259.03deg, #56EC3E 6.39%, #019F2D 98.14%);
   border-radius: 10px;

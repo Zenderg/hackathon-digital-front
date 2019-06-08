@@ -1,16 +1,10 @@
 <template lang="html">
-  <a-checkbox
-       :checked="checked"
-       :disabled="disabled"
-       @change="onChange"
-     >
-       {{label}}
-     </a-checkbox>
+
 </template>
 
 <script>
 export default {
-  name: 'Filter',
+  name: 'Filters',
   data(){
     return {
       label: '0+'

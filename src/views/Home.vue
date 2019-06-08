@@ -11,7 +11,7 @@
         <div class="wrapper">
             <Controls></Controls>
             <EventsList :events="events"></EventsList>
-            <Filter></Filter>
+            <Filters></Filters>
         </div>
     </div>
 </template>
@@ -19,7 +19,7 @@
 <script>
     // @ is an alias to /src
     import EventsList from '@/components/EventsList.vue'
-    import Filter from '@/components/Filter.vue'
+    import Filters from '@/components/Filters.vue'
     import Controls from '@/components/Controls.vue'
     import axios from 'axios'
 
@@ -49,7 +49,7 @@
         },
         components: {
             EventsList,
-            Filter,
+            Filters,
             Controls
         }
     }

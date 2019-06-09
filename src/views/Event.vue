@@ -26,7 +26,7 @@
                 </div>
                 <div class="short-info">
                     <img class="icon" src="../assets/phone.svg" alt="">
-                    <p class="text">+8 800 555 35 35</p>
+                    <p class="text">event.phone</p>
                 </div>
                 <button class="price">
                     {{event.price ? (item.price | 0) + " Р" : 'бесплатно' }}

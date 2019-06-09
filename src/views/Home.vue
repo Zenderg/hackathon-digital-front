@@ -3,7 +3,7 @@
         <div class="wrapper">
             <Controls @showFilter="toggleFilter"></Controls>
             <Filters v-if='isFilterShow' :categories="categories"></Filters>
-            <EventsList  :events="events"></EventsList>
+            <EventsList :events="events"></EventsList>
         </div>
     </div>
 </template>
@@ -31,10 +31,11 @@
         },
         mounted() {
             axios.get('http://penka.studio/api/events').then((r) => {
-                // console.log(r);
+                console.log(r.data[0].category.color);
                 this.events = r.data;
             });
             axios.get('http://penka.studio/api/categories').then((r) => {
+                console.log(r.data);
               this.categories = r.data;
             })
         },

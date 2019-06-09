@@ -1,12 +1,5 @@
 <template>
     <div class="profile">
-        <div class="header">
-            <img src="http://penka.studio/images/temp/avatar.jpg"
-                 alt="">
-            <div class="profile__info">
-                <h3 class="name">Иван Иваныч</h3>
-            </div>
-        </div>
         <div class="my-events">
             <h3 class="title">Мои события</h3>
             <EventsList :events='myEvents'></EventsList>

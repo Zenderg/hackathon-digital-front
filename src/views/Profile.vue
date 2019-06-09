@@ -1,15 +1,15 @@
 <template>
     <div class="profile">
         <div class="header">
-            <img src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=1&w=500"
+            <img src="http://penka.studio/images/temp/avatar.jpg"
                  alt="">
             <div class="profile__info">
-                <p class="name">Иван Иваныч</p>
-                <p class="age">24 года</p>
+                <h3 class="name">Иван Иваныч</h3>
             </div>
         </div>
         <div class="my-events">
-            <p class="title">Мои события</p>
+            <h3 class="title">Мои события</h3>
+            <EventsList :events='myEvents'></EventsList>
         </div>
         <button class="create-event">
             Создать событие!
@@ -18,8 +18,14 @@
 </template>
 
 <script>
+import EventsList from '@/components/EventsList'
     export default {
-        name:"profile"
+        name:"profile",
+        data(){
+          return{
+            myEvents: []
+          }
+        }
     }
 </script>
 
@@ -43,6 +49,8 @@
             .profile__info {
                 .name {
                     margin-bottom: 10px;
+                    font-weight: bold;
+                    color: #fff;
                 }
 
                 .age {
@@ -58,6 +66,7 @@
 
             .title {
                 display: inline;
+                font-size: 20px;
             }
         }
 
@@ -68,7 +77,9 @@
             left: 0;
             background: linear-gradient(258.89deg, #895AEF 4.22%, #BA63FF 92.82%);
             color: #ffffff;
-            padding: 20px 66px;
+            // padding: 20px 66px;
+            width: 100%;
+            padding: 15px;
             border: none;
             outline: none;
             cursor: pointer;

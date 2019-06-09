@@ -2,7 +2,7 @@
     <div id="app">
         <div class="header">
             <router-link class="title" to="/">
-                Название
+                События
             </router-link>
             <router-link to="/profile" class="profile" href="">
                 <img src="http://penka.studio/images/temp/avatar.jpg" alt="">
@@ -22,19 +22,21 @@
 <style lang="scss" scoped>
     .header {
         width: 100%;
-        background: linear-gradient(75.3deg, #BB63FF 0%, #8B5AF0 100%);
-        padding: 31px 0 31px 28px;
+        padding: 20px;
         display: flex;
         align-items: center;
+        border-bottom: 1px solid #eee;
+        box-shadow: 0px 5px 20px #eee;
 
         .title {
-            color: #ffffff;
             margin: 0;
+            color: #000;
+            font-size: 20px;
+            font-weight: bold;
         }
 
         .profile{
             margin-left: auto;
-            margin-right: 26px;
             img{
                 height: 34px;
                 width: 34px;

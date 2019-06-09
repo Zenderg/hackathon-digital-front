@@ -25,12 +25,15 @@
             }
         },
         methods: {
-          toggleFilter(){
-            this.isFilterShow = !this.isFilterShow;
-          },
-          filtersApply(events){
-              this.events = events;
-          }
+            toggleFilter() {
+                this.isFilterShow = !this.isFilterShow;
+            },
+            filtersApply(events) {
+                this.events = events;
+            },
+            searchApply(events) {
+                this.events = events;
+            }
         },
         mounted() {
             axios.get('http://penka.studio/api/events').then((r) => {
@@ -39,8 +42,9 @@
             });
             axios.get('http://penka.studio/api/categories').then((r) => {
                 console.log(r.data);
-              this.categories = r.data;
+                this.categories = r.data;
             });
+            bus.$on("search-apply", this.searchApply);
             bus.$on("filters-apply", this.filtersApply)
         },
         components: {
@@ -53,7 +57,7 @@
 
 <style lang="scss" scoped>
     .home {
-        .wrapper{
+        .wrapper {
             padding: 20px 25px 0 25px;
         }
     }

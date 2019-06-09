@@ -8,7 +8,7 @@
             <div class="categories__wrapper">
                 <div class="category" :style="'background: linear-gradient('+ category.color +')'"
                      v-for="category in categories" :ref="'category-'+category.id" :key="category.id"
-                     @click="handleChangeCategory(category.name, category.id)">
+                     @click="handleChangeCategory(category.id)">
                     <p class="title">{{category.name}}</p>
                     <img class="image" :src="'http://penka.studio'+category.image" :alt="category.name">
                 </div>
@@ -43,7 +43,7 @@
         </div>
         <div class="buttons ">
             <button class='btn' @resetFilters>Сбросить</button>
-            <button class='btn primary' @click="applyFilter">Принять</button>
+            <button class='btn primary' @click="applyFilter">Применить</button>
         </div>
     </div>
 </template>
@@ -96,7 +96,7 @@
             },
             handleChangePrice(id) {
                 this.removeOtherIds(this.prices, id);
-                this.filterParams.price = id;
+                this.filterParams.price = +id;
             },
             removeOtherIds(objs, id) {
                 objs.forEach(obj => {
@@ -112,11 +112,10 @@
                         bus.$emit("filters-apply", r.data);
                     })
             },
-            handleChangeCategory(name, id) {
-                const index = this.filterParams.categories.indexOf(name);
-                index !== -1 ? this.filterParams.categories.splice(index, 1) : this.filterParams.categories.push(name);
+            handleChangeCategory(id) {
+                const index = this.filterParams.categories.indexOf(id);
+                index !== -1 ? this.filterParams.categories.splice(index, 1) : this.filterParams.categories.push(id);
                 const thisEl = this.$refs["category-" + id][0];
-                console.log(thisEl);
                 thisEl.classList.contains("active") ? thisEl.classList.remove("active") : thisEl.classList.add("active");
             }
         },

@@ -21,11 +21,13 @@
         },
         methods: {
             changeSearch() {
+                bus.$emit("loader", true);
                 axios.get('http://penka.studio/api/events', {
                     params:{ query: this.search}
                 })
                     .then(r => {
                         bus.$emit("search-apply", r.data);
+                        bus.$emit("loader", false);
                     });
             }
         }

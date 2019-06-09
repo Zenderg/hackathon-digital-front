@@ -104,12 +104,14 @@
                 });
             },
             applyFilter() {
+                bus.$emit("loader", true);
                 axios.get('http://penka.studio/api/events', {
                     params: this.filterParams
                 })
                     .then(r => {
                         console.log(r);
                         bus.$emit("filters-apply", r.data);
+                        bus.$emit("loader", false);
                     })
             },
             handleChangeCategory(id) {

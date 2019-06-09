@@ -1,10 +1,18 @@
 <template>
     <div class="home">
         <div class="wrapper">
-            <Controls @showFilter="toggleFilter" @showMap='toggleMap'></Controls>
-            <Filters v-if='isFilterShow' :categories="categories"></Filters>
-            <EventsList  v-if='!displayMap' :events="events"></EventsList>
-            <Map v-if='displayMap' :events="events"></Map>
+            <div v-if="loader">
+                <a-spin>
+                    <a-icon slot="indicator" type="loading" style="font-size: 24px" spin />
+                </a-spin>
+                <a-spin :indicator="indicator" />
+            </div>
+            <div v-if="!loader">
+                <Controls @showFilter="toggleFilter"></Controls>
+                <Filters v-if='isFilterShow' :categories="categories"></Filters>
+                <EventsList :events="events"></EventsList>
+                <Map v-if='displayMap' :events="events"></Map>
+            </div>
         </div>
     </div>
 </template>
@@ -24,6 +32,8 @@
                 events: [],
                 categories: [],
                 isFilterShow: false,
+                loader: false,
+                indicator: '<a-icon type="loading" style="font-size: 24px" spin />'
                 displayMap: false
             }
         },
@@ -45,16 +55,18 @@
           }
         },
         mounted() {
+            this.loader = true;
             axios.get('http://penka.studio/api/events').then((r) => {
                 console.log(r.data[0].category.color);
                 this.events = r.data;
-            });
-            axios.get('http://penka.studio/api/categories').then((r) => {
-                console.log(r.data);
-                this.categories = r.data;
+                axios.get('http://penka.studio/api/categories').then((r) => {
+                    this.categories = r.data;
+                    this.loader = false;
+                });
             });
             bus.$on("search-apply", this.searchApply);
-            bus.$on("filters-apply", this.filtersApply)
+            bus.$on("filters-apply", this.filtersApply);
+            bus.$on("loader", (val) => {this.loader = val;});
         },
         components: {
             EventsList,

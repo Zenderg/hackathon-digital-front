@@ -2,7 +2,8 @@
     <div id="app">
         <div class="header">
             <router-link class="title" to="/">
-                События
+                <img src="./assets/logo.svg" alt="">
+                dvizh
             </router-link>
             <router-link to="/profile" class="profile" href="">
                 <img src="http://penka.studio/images/temp/avatar.jpg" alt="">
@@ -20,26 +21,40 @@
 </script>
 
 <style lang="scss" scoped>
-    #app{
+    @font-face {
+        src: url("./assets/fonts/GothaProLig.otf");
+        font-family: "GoLig";
+    }
+
+    #app {
         padding: 0 0 30px;
+
         .header {
             width: 100%;
             padding: 20px;
             display: flex;
             align-items: center;
             border-bottom: 1px solid #eee;
-            box-shadow: 0px 5px 20px #eee;
+            box-shadow: 0 5px 20px #eee;
 
             .title {
                 margin: 0;
                 color: #000;
-                font-size: 20px;
+                font-size: 18px;
                 font-weight: bold;
+                font-family: "GoLig";
+                display: flex;
+                align-items: center;
+
+                img{
+                    margin-right: 7px;
+                }
             }
 
-            .profile{
+            .profile {
                 margin-left: auto;
-                img{
+
+                img {
                     height: 34px;
                     width: 34px;
                     object-fit: cover;

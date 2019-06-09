@@ -11,7 +11,7 @@
             <h3 class="title">Мои события</h3>
             <EventsList :events='myEvents'></EventsList>
         </div>
-        <button class="create-event">
+        <button @click="$router.push({path: '/events/create'})" class="create-event">
             Создать событие!
         </button>
     </div>

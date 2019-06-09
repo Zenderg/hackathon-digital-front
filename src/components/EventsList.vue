@@ -1,24 +1,8 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <template>
   <div class="container">
     <div class="events" >
       <router-link class="event" v-for='item in events' :key="item.id" :to="'/events/'+item.id"
-                :style="{backgroundImage: `linear-gradient(${item.category.color}), url(http://penka.studio/${item.category.image})`}">
+                :style="{backgroundImage: `url(http://penka.studio/${item.category.image}), linear-gradient(${item.category.color})`}">
       <!-- <div class="event" v-for='item in events'> -->
           <div class='flex'>
             <div class="tag">{{ item.category.name }}</div>
@@ -63,6 +47,9 @@ export default {
   border-radius: 10px;
   color: #fff;
   padding-top: 10px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right;
   h3{
     color: #fff;
     font-weight: bold;

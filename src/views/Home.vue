@@ -1,9 +1,10 @@
 <template>
     <div class="home">
         <div class="wrapper">
-            <Controls @showFilter="toggleFilter"></Controls>
+            <Controls @showFilter="toggleFilter" @showMap='toggleMap'></Controls>
             <Filters v-if='isFilterShow' :categories="categories"></Filters>
-            <EventsList  :events="events"></EventsList>
+            <EventsList  v-if='!displayMap' :events="events"></EventsList>
+            <Map v-if='displayMap' :events="events"></Map>
         </div>
     </div>
 </template>
@@ -14,6 +15,7 @@
     import Filters from '@/components/Filters.vue'
     import Controls from '@/components/Controls.vue'
     import axios from 'axios'
+    import Map from '@/components/Map.vue'
 
     export default {
         name: 'home',
@@ -21,12 +23,16 @@
             return {
                 events: [],
                 categories: [],
-                isFilterShow: false
+                isFilterShow: false,
+                displayMap: false
             }
         },
         methods: {
           toggleFilter(){
             this.isFilterShow = !this.isFilterShow;
+          },
+          toggleMap(){
+            this.displayMap = !this.displayMap;
           }
         },
         mounted() {
@@ -41,7 +47,8 @@
         components: {
             EventsList,
             Filters,
-            Controls
+            Controls,
+            Map
         }
     }
 </script>

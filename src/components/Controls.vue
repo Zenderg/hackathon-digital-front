@@ -4,7 +4,7 @@
             <input type="search" placeholder="Поиск событий">
         </div>
         <img @click="$emit('showFilter')" class="filters" src="../assets/filters.svg" alt="">
-        <img class="view" src="../assets/map_view.svg" alt="">
+        <img @click="$emit('showMap')" class="view" src="../assets/map_view.svg" alt="">
     </div>
 </template>
 

@@ -10,14 +10,14 @@
           </div>
           <h3> {{ item.name }} </h3>
           <div class="date">
-            {{ new Date(item.created_at).toLocaleDateString('ru') }}
+            {{ new Date(item.date_start).toLocaleDateString('ru') }}
           </div>
           <div class="address">
             {{ item.address }}
           </div>
           <div class="flex price-container">
             <div class="price">
-              {{item.price ? (item.price | 0) + " Р" : 'бесплатно' }}
+              {{Number(item.price) ? (item.price | 0) + " Р" : 'бесплатно' }}
             </div>
           </div>
 

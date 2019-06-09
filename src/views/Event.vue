@@ -13,6 +13,7 @@
                         <span>+{{ event.age_limit }}</span>
                     </p>
                 </div>
+                <hr>
                 <div class="desc">
                     <p>{{ event.description }}</p>
                 </div>
@@ -25,11 +26,11 @@
                     <p class="text">{{ event.address }}</p>
                 </div>
                 <div class="short-info">
-                    <img class="icon" src="../assets/phone.svg" alt="">
-                    <p class="text">event.phone</p>
+                    <!-- <img class="icon" src="../assets/phone.svg" alt=""> -->
+                    <!-- <p class="text">event.phone</p> -->
                 </div>
                 <button class="price">
-                    {{event.price ? (item.price | 0) + " Р" : 'бесплатно' }}
+                    {{event.price ? (event.price | 0) + " Р" : 'бесплатно' }}
                 </button>
             </div>
         </div>
@@ -60,12 +61,14 @@
 
 <style scoped lang="scss">
 .event{
-    background: linear-gradient(86.82deg, #40C6DD 0%, #A2E4EF 100%);
+    // background: linear-gradient(86.82deg, #40C6DD 0%, #A2E4EF 100%);
+    color: #444;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
     .wrapper{
         padding: 15px 30px 24px 30px;
         .category{
-            background: rgba(255, 255, 255, 0.69);
+            background: rgb(45, 118, 255);
+            color: #fff;
             padding: 5px 15px;
             border-radius: 30px;
             display: inline;
@@ -79,17 +82,22 @@
                 .name{
                     font-size: 24px;
                     margin: 0;
-                    color: #FFFFFF;
+                    font-weight: bold;
+                    // color: #FFFFFF;
                 }
                 .age{
                     color: #FFFFFF;
-                    border: 2px solid #FFFFFF;
+                    background-color: #555;
+                    border: 2px solid #555;
                     height: 35px;
                     width: 35px;
+                    min-height: 35px;
+                    min-width: 35px;
                     text-align: center;
                     border-radius: 50%;
                     display: flex;
                     font-size: 12px;
+                    font-weight: bold;
                     margin-bottom: 0;
                     margin-right: 0;
                     margin-left: auto;
@@ -99,10 +107,10 @@
                 }
             }
             .desc{
-                max-width: 250px;
+                max-width: 450px;
                 margin-bottom: 20px;
                 p{
-                    color:#ffffff;
+                    // color:#ffffff;
                 }
             }
             .short-info{
@@ -112,7 +120,7 @@
                 .text{
                     margin-bottom: 0;
                     margin-left: 6px;
-                    color: #FFFFFF;
+                    color: #888;
                     font-size: 14px;
                 }
             }
@@ -121,8 +129,10 @@
                 padding: 8px 25px;
                 background: #F9FF00;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-                border-radius: 12px;
-                font-size: 12px;
+                border-radius: 22px;
+                font-size: 16px;
+                font-weight: bold;
+
                 border: none;
                 cursor: pointer;
                 outline: none;

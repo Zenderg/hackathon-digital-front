@@ -19,12 +19,21 @@
 
 <script>
 import EventsList from '@/components/EventsList'
+import axios from 'axios'
     export default {
         name:"profile",
         data(){
           return{
             myEvents: []
           }
+        },
+        mounted(){
+          axios.get('http://penka.studio/api/events').then(r => {
+            this.myEvents = r.data.filter(item => item.age_limit >= 16)
+          })
+        },
+        components: {
+          EventsList
         }
     }
 </script>

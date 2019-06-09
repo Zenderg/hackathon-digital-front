@@ -3,12 +3,8 @@
         <div class="wrapper">
             <Controls @showFilter="toggleFilter" @showMap='toggleMap'></Controls>
             <Filters v-if='isFilterShow' :categories="categories"></Filters>
-<<<<<<< HEAD
             <EventsList  v-if='!displayMap' :events="events"></EventsList>
             <Map v-if='displayMap' :events="events"></Map>
-=======
-            <EventsList :events="events"></EventsList>
->>>>>>> 3ef4a15421883d68ef13d198d9c466c0af0a85e2
         </div>
     </div>
 </template>

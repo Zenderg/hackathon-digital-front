@@ -23,6 +23,11 @@ export default new Router({
       path: '/events/:id',
       name: 'event',
       component: () => import(/* webpackChunkName: "event" */ './views/Event.vue')
+    },
+    {
+      path: '/createEvent',
+      name: 'createEvent',
+      component: () => import(/* webpackChunkName: "event" */ './views/createEvent.vue')
     }
   ]
 })

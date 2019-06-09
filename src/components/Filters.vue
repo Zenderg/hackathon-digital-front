@@ -166,7 +166,8 @@
                     filter: grayscale(1);
                     transition: all .3s;
                     margin: 10px 15px 10px 10px;
-                    min-width: 150px;
+                    min-width: 30vw;
+                    // min-width: 150px;
                     min-height: 80px;
                     position: relative;
                     box-shadow: 0 0 7px rgba(0, 0, 0, 0.25);

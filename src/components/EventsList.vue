@@ -54,8 +54,11 @@
     color: #fff;
     font-weight: bold;
     font-size: 16px;
-    margin-left: 20px;
+    padding-left: 20px;
     margin-top: 8px;
+    background: #20274b69;
+    margin-right: 50px;
+    border-radius: 0 5px 5px 0;
   }
   .flex{
     display: flex;
@@ -77,11 +80,12 @@
     margin-right: 20px;
   }
   .date{
-    margin-left: 20px;
+    padding-left: 20px;
 
   }
   .address{
-    margin-left: 20px;
+    padding-left: 20px;
+
   }
   .flex.price-container{
     justify-content: flex-end;

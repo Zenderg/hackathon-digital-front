@@ -29,6 +29,7 @@
             <ymap-marker v-for='marker in events'
                          :marker-id="marker.id"
                          marker-type="placemark"
+                         :callbacks="{ click(){markerSelect(marker)} }"
                          :coords="(marker.ll ? marker.ll.split(',').map(i => Number(i)) : [0, 0])"
                          :hint-content="marker.name"
                          :icon="{
@@ -56,7 +57,9 @@
         },
         methods: {
             markerSelect(el) {
-                bus.$emit("markerSelect", el);
+              console.log(el);
+              this.$router.push(`/events/${el.id}`)
+                // bus.$emit("markerSelect", el);
             }
         }
     }

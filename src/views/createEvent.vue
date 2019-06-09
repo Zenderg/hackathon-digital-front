@@ -95,6 +95,8 @@ export default {
       if(validate){
         console.log(this.params)
         axios.post('http://penka.studio/api/events/create', this.params);
+        this.openNotificationWithIconSucc('success')
+
       } else {
         this.openNotificationWithIcon('error')
       }
@@ -105,6 +107,12 @@ export default {
           description: 'Заполните все поля.',
         });
       },
+      openNotificationWithIconSucc (type) {
+          this.$notification[type]({
+            message: 'Ура!',
+            description: 'Событие создано.',
+          });
+        },
   }
 }
 </script>

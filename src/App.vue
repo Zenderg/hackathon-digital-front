@@ -43,6 +43,7 @@
                 font-size: 18px;
                 font-weight: bold;
                 font-family: "GoLig";
+                letter-spacing: 10px;
                 display: flex;
                 align-items: center;
 

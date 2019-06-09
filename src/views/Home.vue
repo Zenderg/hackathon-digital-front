@@ -10,11 +10,11 @@
 </template>
 
 <script>
-    // @ is an alias to /src
     import EventsList from '@/components/EventsList.vue'
     import Filters from '@/components/Filters.vue'
     import Controls from '@/components/Controls.vue'
     import axios from 'axios'
+    import bus from '../bus';
     import Map from '@/components/Map.vue'
 
     export default {
@@ -33,6 +33,15 @@
           },
           toggleMap(){
             this.displayMap = !this.displayMap;
+          },
+          toggleFilter() {
+              this.isFilterShow = !this.isFilterShow;
+          },
+          filtersApply(events) {
+              this.events = events;
+          },
+          searchApply(events) {
+              this.events = events;
           }
         },
         mounted() {
@@ -42,8 +51,10 @@
             });
             axios.get('http://penka.studio/api/categories').then((r) => {
                 console.log(r.data);
-              this.categories = r.data;
-            })
+                this.categories = r.data;
+            });
+            bus.$on("search-apply", this.searchApply);
+            bus.$on("filters-apply", this.filtersApply)
         },
         components: {
             EventsList,
@@ -56,7 +67,7 @@
 
 <style lang="scss" scoped>
     .home {
-        .wrapper{
+        .wrapper {
             padding: 20px 25px 0 25px;
         }
     }

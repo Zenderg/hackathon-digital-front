@@ -1,7 +1,7 @@
 <template>
     <div class="controls">
         <div class="search">
-            <input type="search" placeholder="Поиск событий">
+            <input @change="changeSearch" v-model="search" type="search" placeholder="Поиск событий">
         </div>
         <img @click="$emit('showFilter')" class="filters" src="../assets/filters.svg" alt="">
         <img @click="$emit('showMap')" class="view" src="../assets/map_view.svg" alt="">
@@ -9,8 +9,26 @@
 </template>
 
 <script>
+    import bus from '../bus';
+    import axios from 'axios';
+
     export default {
-        name: "Controls"
+        name: "Controls",
+        data() {
+            return {
+                search: ""
+            }
+        },
+        methods: {
+            changeSearch() {
+                axios.get('http://penka.studio/api/events', {
+                    params:{ query: this.search}
+                })
+                    .then(r => {
+                        bus.$emit("search-apply", r.data);
+                    });
+            }
+        }
     }
 </script>
 

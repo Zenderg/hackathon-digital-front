@@ -7,7 +7,8 @@
             <h3>Категория</h3>
             <div class="categories__wrapper">
                 <div class="category" :style="'background: linear-gradient('+ category.color +')'"
-                     v-for="category in categories" :ref="'category-'+category.id" :key="category.id" @click="handleChangeCategory(category.name, category.id)">
+                     v-for="category in categories" :ref="'category-'+category.id" :key="category.id"
+                     @click="handleChangeCategory(category.id)">
                     <p class="title">{{category.name}}</p>
                     <img class="image" :src="'http://penka.studio'+category.image" :alt="category.name">
                 </div>
@@ -42,13 +43,14 @@
         </div>
         <div class="buttons ">
             <button class='btn' @resetFilters>Сбросить</button>
-            <button class='btn primary' @click="applyFilter">Принять</button>
+            <button class='btn primary' @click="applyFilter">Применить</button>
         </div>
     </div>
 </template>
 
 <script>
     import axios from 'axios';
+    import bus from '../bus';
 
     export default {
         name: 'Filters',
@@ -94,7 +96,7 @@
             },
             handleChangePrice(id) {
                 this.removeOtherIds(this.prices, id);
-                this.filterParams.price = id;
+                this.filterParams.price = +id;
             },
             removeOtherIds(objs, id) {
                 objs.forEach(obj => {
@@ -107,13 +109,13 @@
                 })
                     .then(r => {
                         console.log(r);
+                        bus.$emit("filters-apply", r.data);
                     })
             },
-            handleChangeCategory(name, id) {
-                const index = this.filterParams.categories.indexOf(name);
-                index !== -1 ? this.filterParams.categories.splice(index, 1) : this.filterParams.categories.push(name);
-                const thisEl = this.$refs["category-"+id][0];
-                console.log(thisEl);
+            handleChangeCategory(id) {
+                const index = this.filterParams.categories.indexOf(id);
+                index !== -1 ? this.filterParams.categories.splice(index, 1) : this.filterParams.categories.push(id);
+                const thisEl = this.$refs["category-" + id][0];
                 thisEl.classList.contains("active") ? thisEl.classList.remove("active") : thisEl.classList.add("active");
             }
         },
@@ -124,6 +126,10 @@
 </script>
 
 <style lang="scss" scoped>
+    button {
+        cursor: pointer;
+    }
+
     h3 {
         font-weight: bold;
         font-size: 20px;
@@ -147,6 +153,7 @@
                 }
 
                 .category {
+                    cursor: pointer;
                     filter: grayscale(1);
                     transition: all .3s;
                     margin: 10px 15px 10px 10px;
@@ -155,10 +162,12 @@
                     position: relative;
                     box-shadow: 0 0 7px rgba(0, 0, 0, 0.25);
                     border-radius: 10px;
-                    &:hover{
+
+                    &:hover {
                         filter: grayscale(0);
                     }
-                    &.active{
+
+                    &.active {
                         filter: grayscale(0);
                     }
 

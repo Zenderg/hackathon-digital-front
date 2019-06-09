@@ -78,7 +78,7 @@
                 ],
                 filterParams: {
                     city: 1,
-                    categories: [],
+                    categories: '',
                     date: null,
                     age: null,
                     price: false
@@ -112,11 +112,21 @@
                         bus.$emit("filters-apply", r.data);
                     })
             },
+            // handleChangeCategory(id) {
+            //     const index = this.filterParams.categories.indexOf(id);
+            //     index !== -1 ? this.filterParams.categories.splice(index, 1) : this.filterParams.categories.push(id);
+            //     const thisEl = this.$refs["category-" + id][0];
+            //     thisEl.classList.contains("active") ? thisEl.classList.remove("active") : thisEl.classList.add("active");
+            // },
             handleChangeCategory(id) {
-                const index = this.filterParams.categories.indexOf(id);
-                index !== -1 ? this.filterParams.categories.splice(index, 1) : this.filterParams.categories.push(id);
-                const thisEl = this.$refs["category-" + id][0];
-                thisEl.classList.contains("active") ? thisEl.classList.remove("active") : thisEl.classList.add("active");
+              const categories = this.filterParams.categories.split(',').filter(i => i !== '').map(i => Number(i));
+              if(categories.includes(id)){
+                this.filterParams.categories = categories.filter(i => i != id).join(',');
+              } else {
+                this.filterParams.categories = [...categories, id].join(',');
+              }
+              const thisEl = this.$refs["category-" + id][0];
+              thisEl.classList.toggle("active");
             }
         },
         mounted() {

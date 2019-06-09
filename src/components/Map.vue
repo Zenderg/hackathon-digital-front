@@ -33,7 +33,8 @@
                          :hint-content="marker.name"
                          :icon="{
                             layout: 'default#image',
-                            imageSize: [50, 60]
+                            imageSize: [40, 54],
+                            imageHref: `http://penka.studio/${marker.marker}`
                           }"
                          cluster-name="1"
                          :key="marker.id"

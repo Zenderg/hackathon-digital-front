@@ -6,8 +6,10 @@
         <div class="block categories">
             <h3>Категория</h3>
             <div class="categories__wrapper">
-                <div class="category" :style="'background: linear-gradient('+ category.color +')'" v-for="category in categories" :key="category.id" @click="handleChangeCategory">
+                <div class="category" :style="'background: linear-gradient('+ category.color +')'"
+                     v-for="category in categories" :ref="'category-'+category.id" :key="category.id" @click="handleChangeCategory(category.name, category.id)">
                     <p class="title">{{category.name}}</p>
+                    <img class="image" :src="'http://penka.studio'+category.image" :alt="category.name">
                 </div>
             </div>
         </div>
@@ -56,10 +58,10 @@
         data() {
             return {
                 dates: [
-                    {id: 0, value:"today", name: 'Сегодня', checked: false},
-                    {id: 1, value:"tomorrow", name: 'Завтра', checked: false},
-                    {id: 2, value:"week", name: 'На этой неделе', checked: false},
-                    {id: 3, value:"month", name: 'В этом месяце', checked: false}
+                    {id: 0, value: "today", name: 'Сегодня', checked: false},
+                    {id: 1, value: "tomorrow", name: 'Завтра', checked: false},
+                    {id: 2, value: "week", name: 'На этой неделе', checked: false},
+                    {id: 3, value: "month", name: 'В этом месяце', checked: false}
                 ],
                 ages: [
                     {id: 0, name: '0', checked: false},
@@ -69,12 +71,12 @@
                     {id: 4, name: '18', checked: false}
                 ],
                 prices: [
-                    {id: 0, name:"1 р.+", checked: false},
-                    {id: 1, name:"Бесплатно", checked: false}
+                    {id: 0, name: "1 р.+", checked: false},
+                    {id: 1, name: "Бесплатно", checked: false}
                 ],
                 filterParams: {
                     city: 1,
-                    categories: null,
+                    categories: [],
                     date: null,
                     age: null,
                     price: false
@@ -82,9 +84,6 @@
             }
         },
         methods: {
-            handleChangeCategory(value) {
-                console.log(value);
-            },
             handleChangeDate(value, id) {
                 this.removeOtherIds(this.dates, id);
                 this.filterParams.date = value;
@@ -102,13 +101,20 @@
                     if (obj.id !== id) obj.checked = false;
                 });
             },
-            applyFilter(){
+            applyFilter() {
                 axios.get('http://penka.studio/api/events', {
                     params: this.filterParams
                 })
                     .then(r => {
                         console.log(r);
                     })
+            },
+            handleChangeCategory(name, id) {
+                const index = this.filterParams.categories.indexOf(name);
+                index !== -1 ? this.filterParams.categories.splice(index, 1) : this.filterParams.categories.push(name);
+                const thisEl = this.$refs["category-"+id][0];
+                console.log(thisEl);
+                thisEl.classList.contains("active") ? thisEl.classList.remove("active") : thisEl.classList.add("active");
             }
         },
         mounted() {
@@ -130,25 +136,52 @@
             margin-bottom: 20px;
         }
 
-        .categories{
-            .categories__wrapper{
+        .categories {
+            .categories__wrapper {
                 display: flex;
                 overflow-x: scroll;
                 margin-left: -10px;
-                &::-webkit-scrollbar { width: 0; }
-                .category{
+
+                &::-webkit-scrollbar {
+                    width: 0;
+                }
+
+                .category {
+                    filter: grayscale(1);
+                    transition: all .3s;
                     margin: 10px 15px 10px 10px;
                     min-width: 150px;
                     min-height: 80px;
                     position: relative;
                     box-shadow: 0 0 7px rgba(0, 0, 0, 0.25);
                     border-radius: 10px;
-                    .title{
+                    &:hover{
+                        filter: grayscale(0);
+                    }
+                    &.active{
+                        filter: grayscale(0);
+                    }
+
+
+                    .title {
                         position: absolute;
                         font-size: 13px;
                         text-transform: uppercase;
                         top: 12px;
-                        left: 12px;
+                        left: 0;
+                        z-index: 4;
+                        padding: 2px 7px;
+                        border-top-right-radius: 20px;
+                        border-bottom-right-radius: 20px;
+                        background: rgba(255, 255, 255, 0.69);
+                    }
+
+                    .image {
+                        z-index: 3;
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
                     }
                 }
             }

@@ -2,7 +2,8 @@
     <div id="app">
         <div class="header">
             <router-link class="title" to="/">
-                События
+                <img src="./assets/logo.svg" alt="">
+                dvizh
             </router-link>
             <router-link to="/profile" class="profile" href="">
                 <img src="http://penka.studio/images/temp/avatar.jpg" alt="">
@@ -20,28 +21,46 @@
 </script>
 
 <style lang="scss" scoped>
-    .header {
-        width: 100%;
-        padding: 20px;
-        display: flex;
-        align-items: center;
-        border-bottom: 1px solid #eee;
-        box-shadow: 0px 5px 20px #eee;
+    @font-face {
+        src: url("./assets/fonts/GothaProLig.otf");
+        font-family: "GoLig";
+    }
 
-        .title {
-            margin: 0;
-            color: #000;
-            font-size: 20px;
-            font-weight: bold;
-        }
+    #app {
+        padding: 0 0 30px;
 
-        .profile{
-            margin-left: auto;
-            img{
-                height: 34px;
-                width: 34px;
-                object-fit: cover;
-                border-radius: 50%;
+        .header {
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            box-shadow: 0 5px 20px #eee;
+
+            .title {
+                margin: 0;
+                color: #000;
+                font-size: 18px;
+                font-weight: bold;
+                font-family: "GoLig";
+                letter-spacing: 10px;
+                display: flex;
+                align-items: center;
+
+                img{
+                    margin-right: 7px;
+                }
+            }
+
+            .profile {
+                margin-left: auto;
+
+                img {
+                    height: 34px;
+                    width: 34px;
+                    object-fit: cover;
+                    border-radius: 50%;
+                }
             }
         }
     }

@@ -1,9 +1,9 @@
 <template>
     <div class="home">
         <div class="wrapper">
-            <Controls @showFilter="toggleFilter"></Controls>
+            <Controls @showFilter="toggleFilter" @showMap="toggleMap"></Controls>
             <Filters v-if='isFilterShow' :categories="categories"></Filters>
-            <EventsList :events="events"></EventsList>
+            <EventsList v-if="!displayMap" :events="events"></EventsList>
             <Map v-if='displayMap' :events="events"></Map>
         </div>
     </div>

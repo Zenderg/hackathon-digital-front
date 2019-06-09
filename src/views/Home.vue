@@ -9,11 +9,11 @@
 </template>
 
 <script>
-    // @ is an alias to /src
     import EventsList from '@/components/EventsList.vue'
     import Filters from '@/components/Filters.vue'
     import Controls from '@/components/Controls.vue'
     import axios from 'axios'
+    import bus from '../bus';
 
     export default {
         name: 'home',
@@ -27,6 +27,9 @@
         methods: {
           toggleFilter(){
             this.isFilterShow = !this.isFilterShow;
+          },
+          filtersApply(events){
+              this.events = events;
           }
         },
         mounted() {
@@ -37,7 +40,8 @@
             axios.get('http://penka.studio/api/categories').then((r) => {
                 console.log(r.data);
               this.categories = r.data;
-            })
+            });
+            bus.$on("filters-apply", this.filtersApply)
         },
         components: {
             EventsList,

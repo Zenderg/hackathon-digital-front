@@ -1,13 +1,5 @@
 <template>
     <div class="home">
-        <div class="header">
-            <p class="title">
-
-            </p>
-            <router-link to="/profile" class="profile" href="">
-                <img src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=1&w=500" alt="">
-            </router-link>
-        </div>
         <div class="wrapper">
             <Controls @showFilter="toggleFilter"></Controls>
             <Filters v-if='isFilterShow' :categories="categories"></Filters>
@@ -56,29 +48,6 @@
 
 <style lang="scss" scoped>
     .home {
-        .header {
-            width: 100%;
-            background: linear-gradient(75.3deg, #BB63FF 0%, #8B5AF0 100%);
-            padding: 31px 0 31px 28px;
-            display: flex;
-            align-items: center;
-
-            .title {
-                color: #ffffff;
-                margin: 0;
-            }
-
-            .profile{
-                margin-left: auto;
-                margin-right: 26px;
-                img{
-                    height: 34px;
-                    width: 34px;
-                    object-fit: cover;
-                    border-radius: 50%;
-                }
-            }
-        }
         .wrapper{
             padding: 20px 25px 0 25px;
         }

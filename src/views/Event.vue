@@ -2,12 +2,12 @@
     <div class="event">
         <div class="wrapper">
             <p class="category">
-                {{event.category.name || null}}
+                {{event.category ? event.category.name : ""}}
             </p>
             <div class="info">
                 <div class="name-age">
                     <p class="name">
-                        {{ event.name }}
+                        {{ event.name || "" }}
                     </p>
                     <p class="age">
                         <span>+{{ event.age_limit }}</span>
@@ -29,7 +29,7 @@
                     <p class="text">+8 800 555 35 35</p>
                 </div>
                 <button class="price">
-                    {{ event.price || "бесплатно" }}
+                    {{event.price ? (item.price | 0) + " Р" : 'бесплатно' }}
                 </button>
             </div>
         </div>
@@ -52,7 +52,7 @@
         mounted() {
             axios.get("http://penka.studio/api/events/"+this.$route.params.id).then((r) => {
                 console.log(r.data);
-                this.event = r.data;
+                this.event = {...r.data};
             })
         }
     }

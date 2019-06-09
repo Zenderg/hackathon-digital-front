@@ -16,7 +16,7 @@
           </div>
           <div class="flex price-container">
             <div class="price">
-              {{item.price ? (item.price | 0) + " Р" : 'Бесплатно' }}
+              {{item.price ? (item.price | 0) + " Р" : 'бесплатно' }}
             </div>
           </div>
 

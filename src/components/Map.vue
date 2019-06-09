@@ -29,7 +29,7 @@
             <ymap-marker v-for='marker in events'
                          :marker-id="marker.id"
                          marker-type="placemark"
-                         :coords="marker.ll.split(',').map(i => Number(i))"
+                         :coords="(marker.ll ? marker.ll.split(',').map(i => Number(i)) : [0, 0])"
                          :hint-content="marker.name"
                          :icon="{
                             layout: 'default#image',

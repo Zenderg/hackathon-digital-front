@@ -108,7 +108,6 @@
                     params: this.filterParams
                 })
                     .then(r => {
-                        console.log(r);
                         bus.$emit("filters-apply", r.data);
                     })
             },

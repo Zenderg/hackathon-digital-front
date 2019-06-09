@@ -1,9 +1,9 @@
 <template>
     <div class="home">
         <div class="wrapper">
-            <Controls @showFilter="toggleFilter" @showMap='toggleMap'></Controls>
+            <Controls @showFilter="toggleFilter"></Controls>
             <Filters v-if='isFilterShow' :categories="categories"></Filters>
-            <EventsList  v-if='!displayMap' :events="events"></EventsList>
+            <EventsList :events="events"></EventsList>
             <Map v-if='displayMap' :events="events"></Map>
         </div>
     </div>
@@ -24,37 +24,37 @@
                 events: [],
                 categories: [],
                 isFilterShow: false,
+                indicator: '<a-icon type="loading" style="font-size: 24px" spin />',
                 displayMap: false
             }
         },
         methods: {
-          toggleFilter(){
-            this.isFilterShow = !this.isFilterShow;
-          },
-          toggleMap(){
-            this.displayMap = !this.displayMap;
-          },
-          toggleFilter() {
-              this.isFilterShow = !this.isFilterShow;
-          },
-          filtersApply(events) {
-              this.events = events;
-          },
-          searchApply(events) {
-              this.events = events;
-          }
+            toggleFilter() {
+                this.isFilterShow = !this.isFilterShow;
+            },
+            toggleMap() {
+                this.displayMap = !this.displayMap;
+            },
+            toggleFilter() {
+                this.isFilterShow = !this.isFilterShow;
+            },
+            filtersApply(events) {
+                this.events = events;
+            },
+            searchApply(events) {
+                this.events = events;
+            }
         },
         mounted() {
             axios.get('http://penka.studio/api/events').then((r) => {
                 console.log(r.data[0].category.color);
                 this.events = r.data;
-            });
-            axios.get('http://penka.studio/api/categories').then((r) => {
-                console.log(r.data);
-                this.categories = r.data;
+                axios.get('http://penka.studio/api/categories').then((r) => {
+                    this.categories = r.data;
+                });
             });
             bus.$on("search-apply", this.searchApply);
-            bus.$on("filters-apply", this.filtersApply)
+            bus.$on("filters-apply", this.filtersApply);
         },
         components: {
             EventsList,
